@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    background-color: rgb(156, 156, 101);
+}
+
+.page-title {
+    font-family: "JetBrains Mono", monospace;
+    color: #36395A;
+    font-size: 50px;
+    text-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px;
+    position: absolute;
+    top: 30px;
+}
+
+.bottom {
+    font-family: "JetBrains Mono", monospace;
+    color: #36395A;
+    font-size: 10px;
+    text-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    width: 30%;
+    height: 60%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+
+#input-field {
+    width: 30rem;
+    height: 5rem;
+    margin: 1rem;
+}
+
+button {
+    width: 5rem;
+    height: 5rem;
+    margin: 10px;
+    background-color: aliceblue;
+    box-shadow: 7px 5px 0px 1px #FFA461;
+    font-size: 2em;
+}
+
+#equals-button {
+    width: 11.5rem;
+    background-color: aquamarine;
+    box-shadow: 7px 5px 0px 1px aquamarine;
+}
+
+#ans-button {
+    background-color: aquamarine;
+    box-shadow: 7px 5px 0px 1px aquamarine;
+}
+
+#clear-button {
+    background-color: rgb(253, 255, 127);
+    box-shadow: 7px 5px 0px 1px rgb(253, 255, 127);
+}
+
+.op {
+    background-color: #FFA461;
+
+}
+
+input {
+    text-align: end;
+    font-size: 3em;
+}
