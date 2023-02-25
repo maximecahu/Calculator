@@ -21,6 +21,7 @@ const pointButton = document.getElementById("point-button")
 const posnegButton = document.getElementById("posneg-button")
 const clearButton = document.getElementById("clear-button")
 const ansButton = document.getElementById("ans-button")
+const delButton = document.getElementById("delete")
 
 let ans = 0;
 let finalAns = 0;
@@ -42,6 +43,11 @@ ansButton.addEventListener("click", function () {
     equalBtnPressed = false
     operationBtnPressed = false
     document.getElementById("input-field").value = display;
+    textColorAnim()
+})
+
+delButton.addEventListener("click", function () {
+    backspace()
 })
 
 clearButton.addEventListener("click", function () {
@@ -58,38 +64,7 @@ clearButton.addEventListener("click", function () {
 })
 
 posnegButton.addEventListener("click", function () {
-    const displayInput = parseFloat(document.getElementById("input-field").value);
-    if (equalBtnPressed == true || calculationOnGoing == true) {
-        display = "";
-        display += "-"
-        document.getElementById("input-field").value = display;
-    } else if (displayInput > 0) {
-        if (numberPressed == false) {
-            display += "-"
-            document.getElementById("input-field").value = display;
-        } else {
-            display = "-" + display;
-            document.getElementById("input-field").value = display;
-        }
-    } else if (displayInput < 0) {
-        if (numberPressed == false) {
-            display -= "-"
-            document.getElementById("input-field").value = display;
-        } else {
-            display = display.slice(1);
-            document.getElementById("input-field").value = display;
-        }
-    } else if (displayInput == 0) {
-
-    } else if (display == "-") {
-        display = ""
-        document.getElementById("input-field").value = display;
-    } else {
-        display += "-"
-        document.getElementById("input-field").value = display;
-    }
-
-    equalBtnPressed = false
+    posneg();
 })
 
 oneButton.addEventListener("click", function () { number(1); })
@@ -165,12 +140,12 @@ function operation(op) {
         }
     }
     operationBtnPressed = true
+    textColorAnim()
 }
 
 
 
 function equal() {
-
     if (equalBtnPressed == false) {
         const inputEquals = parseFloat(document.getElementById("input-field").value);
         lastInput = inputEquals;
@@ -211,10 +186,8 @@ function equal() {
         calculationOnGoing = false
         operationBtnPressed = false
     }
+    textColorAnim()
 }
-
-
-
 
 function addition(firstNum, secondNum) {
     let addans = firstNum + secondNum;
@@ -238,4 +211,148 @@ function division(firstNum, secondNum) {
     let divideans = firstNum / secondNum;
     ans = divideans;
 }
+
+function textColorAnim() {
+    const myInput = document.getElementById("input-field");
+    myInput.style.color = "rgba(0, 0, 0, 0)";
+    setTimeout(() => {
+        myInput.style.color = ""; // set to empty string to restore original color
+    }, 100);
+}
+
+function posneg() {
+    const displayInput = parseFloat(document.getElementById("input-field").value);
+    if (equalBtnPressed == true || calculationOnGoing == true) {
+        display = "";
+        display += "-"
+        document.getElementById("input-field").value = display;
+    } else if (displayInput > 0) {
+        if (numberPressed == false) {
+            display += "-"
+            document.getElementById("input-field").value = display;
+        } else {
+            display = "-" + display;
+            document.getElementById("input-field").value = display;
+        }
+    } else if (displayInput < 0) {
+        if (numberPressed == false) {
+            display -= "-"
+            document.getElementById("input-field").value = display;
+        } else {
+            display = display.slice(1);
+            document.getElementById("input-field").value = display;
+        }
+    } else if (displayInput == 0) {
+
+    } else if (display == "-") {
+        display = ""
+        document.getElementById("input-field").value = display;
+    } else {
+        display += "-"
+        document.getElementById("input-field").value = display;
+    }
+
+    equalBtnPressed = false
+}
+
+function backspace() {
+    if (document.getElementById("input-field").value == "") {
+    } else if (document.getElementById("input-field").value == "-") {
+        display = ""
+        document.getElementById("input-field").value = display
+        numberPressed = true
+        equalBtnPressed = false
+        operationBtnPressed = false
+    } else {
+        const displayInput = parseFloat(document.getElementById("input-field").value);
+        display = displayInput.toString().slice(0, -1)
+        document.getElementById("input-field").value = display
+        numberPressed = true
+        equalBtnPressed = false
+        operationBtnPressed = false
+    }
+}
+
 //----------------------------------------------------------------------------------------------------------------------
+
+//KEYBOARD-------------------------------------------------------------------------------------------------------------
+
+document.addEventListener("keydown", function (event) {
+    switch (event.code) {
+        case "Digit1":
+        case "Numpad1":
+            number(1);
+            break;
+        case "Digit2":
+        case "Numpad2":
+            number(2);
+            break;
+        case "Digit3":
+        case "Numpad3":
+            number(3);
+            break;
+        case "Digit4":
+        case "Numpad4":
+            number(4);
+            break;
+        case "Digit5":
+        case "Numpad5":
+            number(5);
+            break;
+        case "Digit6":
+        case "Numpad6":
+            number(6);
+            break;
+        case "Digit7":
+        case "Numpad7":
+            number(7);
+            break;
+        case "Digit8":
+        case "Numpad8":
+            number(8);
+            break;
+        case "Digit9":
+        case "Numpad9":
+            number(9);
+            break;
+        case "Digit0":
+        case "Numpad0":
+            number(0);
+            break;
+        case "NumpadDecimal":
+            number(".");
+            break;
+        case "NumpadAdd":
+            operation("+")
+            break;
+        case "NumpadSubtract":
+        case "Minus":
+            if (display == "" || display == "-") {
+                posneg();
+            } else {
+                operation("-")
+            }
+            break;
+        case "NumpadMultiply":
+        case "KeyX":
+            operation("*")
+            break;
+        case "NumpadDivide":
+        case "Slash":
+            operation("/")
+            break;
+        case "Enter":
+        case "NumpadEnter":
+            equal()
+            break;
+        case "Backspace":
+            backspace()
+            break;
+        case "KeyP":
+            posneg();
+            break;
+    }
+    if (event.shiftKey && event.key === '.') {
+        number(".");
+    }
+});

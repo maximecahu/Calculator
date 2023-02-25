@@ -4,17 +4,23 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-
     background-color: rgb(156, 156, 101);
 }
+
+
 
 .page-title {
     font-family: "JetBrains Mono", monospace;
     color: #36395A;
     font-size: 50px;
     text-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px;
-    position: absolute;
-    top: 30px;
+    margin-bottom: 3rem;
+}
+
+.side-note {
+    font-family: "JetBrains Mono", monospace;
+    color: #36395A;
+    font-size: 10px;
 }
 
 .bottom {
@@ -32,14 +38,15 @@ body {
     justify-content: center;
     align-items: center;
     background-color: antiquewhite;
-    width: 30%;
-    height: 60%;
+    width: 35rem;
+    height: 35rem;
     border-radius: 20px;
     box-shadow: 5px 5px 15px 5px #000000;
+    margin-block: 3rem;
 }
 
-#input-field {
-    width: 30rem;
+.input {
+    width: 24rem;
     height: 5rem;
     margin: 1rem;
     background-color: #d6d6d6;
@@ -52,12 +59,24 @@ button {
     background-color: aliceblue;
     box-shadow: 7px 5px 0px 1px #FFA461;
     font-size: 2em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#delete {
+    margin-left: 0px;
+    margin-right: 20px;
 }
 
 #equals-button {
     width: 11.5rem;
     background-color: aquamarine;
     box-shadow: 7px 5px 0px 1px aquamarine;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#equals-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 2px 0px 1px aquamarine;
 }
 
 #ans-button {
@@ -65,9 +84,19 @@ button {
     box-shadow: 7px 5px 0px 1px aquamarine;
 }
 
+#ans-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 2px 0px 1px aquamarine;
+}
+
 #clear-button {
     background-color: rgb(253, 255, 127);
     box-shadow: 7px 5px 0px 1px rgb(253, 255, 127);
+}
+
+#clear-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 2px 0px 1px rgb(253, 255, 127);
 }
 
 .op {
@@ -78,4 +107,10 @@ button {
 input {
     text-align: end;
     font-size: 3em;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 2px 0px 1px #FFA461;
+
 }
